@@ -1,0 +1,352 @@
+{
+  "@type": "group",
+  "Group": {
+    "@type": "group",
+    "width": "100%",
+    "height": "100%",
+    "clipContent": true,
+    "scaleContent": "none",
+    "layout": "absolute",
+    "creationPolicy": "onDisplay",
+    "symbol": "MovingCircle",
+    "data": [
+      "jsonParser.output"
+    ],
+    "jsonParser": {
+      "@type": "jsonParser",
+      "!ps": [
+        "input",
+        "output",
+        "parseError",
+        "selector"
+      ],
+      "!x": 313,
+      "!y": 113,
+      "input": [
+        "@parent.script.output"
+      ]
+    },
+    "script": {
+      "@type": "script",
+      "!ps": [
+        "invoke",
+        "script",
+        "output",
+        "print",
+        "a"
+      ],
+      "!x": 135,
+      "!y": 68,
+      "script": "var out = [];\nfor (var i = 1; i <= @.a; i++) {\n  out.add([]);\n}\nreturn out;",
+      "autoRun": true,
+      "!var": [
+        {
+          "n": "a",
+          "t": "object"
+        }
+      ],
+      "a": [
+        "@parent.@parent.Number_Input.value"
+      ]
+    },
+    "renderer": {},
+    "!df": true,
+    "@array": []
+  },
+  "Number_Input": {
+    "@type": "numberFormInput",
+    "width": 84,
+    "cornerRadius": 0,
+    "fontSize": "12",
+    "height": 29,
+    "border": {
+      "@type": "fill",
+      "gradient": {
+        "@type": "gradient",
+        "@array": [
+          {
+            "ratio": 0,
+            "color": "#000000",
+            "alpha": 1
+          },
+          {
+            "ratio": 100,
+            "color": "#ffffff",
+            "alpha": 1
+          }
+        ]
+      },
+      "color": 16777215,
+      "fillType": "solid"
+    },
+    "borderWidth": 1,
+    "value": "50",
+    "borderStyle": "solid",
+    "color": 12303296,
+    "isValid": true,
+    "paddingLeft": 5,
+    "left": 5,
+    "top": 5
+  },
+  "width": "100%",
+  "height": "100%",
+  "focusType": "isolate",
+  "background": {
+    "@type": "fill",
+    "fillType": "solid",
+    "color": 3355443
+  },
+  "@array": [
+    [
+      "Group"
+    ],
+    [
+      "Number_Input"
+    ]
+  ],
+  "@symbols": {
+    "Circle": {
+      "@type": "shape",
+      "width": 64,
+      "height": 64,
+      "cornerRadius": "50%",
+      "border": {
+        "@type": "border",
+        "gradient": {
+          "@type": "gradient",
+          "@array": [
+            {
+              "ratio": 0,
+              "color": "#000000",
+              "alpha": 1
+            },
+            {
+              "ratio": 100,
+              "color": "#ffffff",
+              "alpha": 1
+            }
+          ]
+        },
+        "color": 16777215,
+        "fillType": "solid"
+      },
+      "borderWidth": "3",
+      "borderStyle": "solid",
+      "background": [
+        "@params.color"
+      ],
+      "!label": "Circle",
+      "@params": {
+        "!reuse": true,
+        "!layout": {
+          "type": "vbox",
+          "children": [
+            "color"
+          ]
+        },
+        "!var": [
+          {
+            "n": "color",
+            "t": "fill"
+          }
+        ],
+        "color": {
+          "@type": "fill",
+          "fillType": "solid",
+          "color": 0
+        }
+      },
+      "@W": 64,
+      "@H": 64
+    },
+    "MovingCircle": {
+      "@type": "symbol",
+      "symbol": "Circle",
+      "width": 16,
+      "height": 16,
+      "!label": "Circle",
+      "state": {
+        "@type": "changeState",
+        "!ps": [
+          "invoke",
+          "revert",
+          "enabled",
+          "duration",
+          "durationBack",
+          "0",
+          "1",
+          "2",
+          "3"
+        ],
+        "invoke": [
+          "@parent.script.c"
+        ],
+        "duration": 2,
+        "durationBack": 1,
+        "@array": [
+          "@parent.left",
+          {
+            "@type": "stateItem",
+            "value": [
+              "@parent.@parent.script.a"
+            ],
+            "original": [
+              "@parent.@parent.left"
+            ],
+            "easing": "cubicIn",
+            "easingBack": "cubicIn"
+          },
+          "@parent.top",
+          {
+            "@type": "stateItem",
+            "value": [
+              "@parent.@parent.script.b"
+            ],
+            "original": [
+              "@parent.@parent.top"
+            ],
+            "easing": "cubicIn",
+            "easingBack": "cubicIn"
+          }
+        ]
+      },
+      "script": {
+        "@type": "script",
+        "!ps": [
+          "invoke",
+          "script",
+          "output",
+          "print",
+          "a",
+          "b",
+          "c",
+          "w",
+          "h"
+        ],
+        "!x": 303,
+        "!y": 135,
+        "invoke": [
+          "@parent.stopwatch.output"
+        ],
+        "script": "function getRandomInt(min, max) {\n  return Math.floor(Math.random() * (max - min + 1)) + min;\n}\n\n@.a = getRandomInt(70, @.w - 70);\n@.b = getRandomInt(70, @.h - 70)\n@.c = Math.random();",
+        "!var": [
+          {
+            "n": "a",
+            "t": "object"
+          },
+          {
+            "n": "b",
+            "t": "object"
+          },
+          {
+            "n": "c",
+            "t": "object"
+          },
+          {
+            "n": "w",
+            "t": "object"
+          },
+          {
+            "n": "h",
+            "t": "object"
+          }
+        ],
+        "w": [
+          "@parent.webDocument.width"
+        ],
+        "h": [
+          "@parent.webDocument.height"
+        ]
+      },
+      "stopwatch": {
+        "@type": "stopwatch",
+        "interval": 2.5,
+        "step": 1,
+        "!ps": [
+          "enabled",
+          "interval",
+          "step",
+          "output"
+        ],
+        "!x": 284,
+        "!y": 28,
+        "enabled": true,
+        "modulo": 2
+      },
+      "webDocument": {
+        "@type": "webDocument",
+        "!ps": [
+          "title",
+          "width",
+          "height",
+          "url",
+          "hash",
+          "language",
+          "platform",
+          "userAgent",
+          "appName",
+          "zoom",
+          "initialScale",
+          "lockScale"
+        ],
+        "!x": 149,
+        "!y": 57
+      },
+      "!df": true,
+      "add": {
+        "@type": "add",
+        "!ps": [
+          "0",
+          "1",
+          "output"
+        ],
+        "!x": 511,
+        "!y": 88,
+        "@array": [
+          [
+            "@parent.script.a"
+          ],
+          8
+        ]
+      },
+      "add1": {
+        "@type": "add",
+        "!ps": [
+          "0",
+          "1",
+          "output"
+        ],
+        "!x": 478,
+        "!y": 200,
+        "@array": [
+          [
+            "@parent.script.b"
+          ],
+          8
+        ]
+      },
+      "script1": {
+        "@type": "script",
+        "!ps": [
+          "invoke",
+          "script",
+          "output",
+          "print"
+        ],
+        "!x": 144,
+        "!y": 357,
+        "script": "function getRandomInt(min, max) {\n  return Math.floor(Math.random() * (max - min + 1)) + min;\n}\n\nvar out = [\"blue\", \"red\"];\n\nreturn out[getRandomInt(0, out.length - 1)];",
+        "autoRun": true
+      },
+      "color": [
+        "script1.output"
+      ],
+      "@params": {
+        "!reuse": true
+      },
+      "@W": 16,
+      "@H": 16
+    }
+  },
+  "@ver": 5706
+}
