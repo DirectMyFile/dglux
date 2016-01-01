@@ -1,3 +1,3 @@
-# DGLux5 Dashboards
+# DGLux5
 
-Dashboards for DGLux5
+DGLux5 Dashboards and Widgets
